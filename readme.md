@@ -15,5 +15,10 @@ pip3 install click
 
 3.
 ```
-python bombard-urls-from-txt.py --filepath urls.txt --connections 1000 --duration 60s --infinitely off --output_docker_stdout off
+python3 bombard-urls-from-txt.py
+```
+
+or customize params:
+```
+python3 bombard-urls-from-txt.py --filepath urls.txt --connections 1000 --duration 60s --infinitely on --output_docker_stdout off
 ```
