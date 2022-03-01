@@ -7,6 +7,7 @@ Allows to launch bombardier Docker image and attack all URLs from given txt file
 
 1. 
 ```
+https://github.com/absent1706/bombard-urls-from-txt
 pip3 install click
 ```
 
