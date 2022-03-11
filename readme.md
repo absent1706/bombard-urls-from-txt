@@ -15,7 +15,7 @@ pip3 install click
 
 3.
 ```
-python3 bombard-urls-from-txt.py
+python3 bombard-urls-from-txt.py --filepath urls.txt
 ```
 
 or customize params:
