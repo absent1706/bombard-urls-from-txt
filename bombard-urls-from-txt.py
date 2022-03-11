@@ -10,7 +10,7 @@ import click
 @click.command()
 @click.option('--filepath',  default='urls.txt', help='txt file containing bombarded url in each line')
 @click.option('--connections',  default=1000, help='# of bombardier connections')
-@click.option('--duration', default='60s', help='time to bombard each url')
+@click.option('--duration', default=60, help='time to bombard each url during 1 cycle, in seconds')
 @click.option('--infinitely',  default=True, help='whether to bombard given URLs infinitely. If set to true, program will run "while True"')
 @click.option('--output_docker_stdout',  default=False, help='whether to print stdout that Docker returns (with bombarding statistics)')
 def main(filepath, connections, duration, infinitely, output_docker_stdout):
@@ -27,11 +27,11 @@ def main(filepath, connections, duration, infinitely, output_docker_stdout):
 
     def bombard():
         for url in urls:
-            print('bombarding', url, 'for', duration, '...')
+            print('bombarding', url, 'for', duration, ' seconds ...')
             result = subprocess.run(
-                ['docker', 'run', '-ti', 'alpine/bombardier', 
+                ['docker', 'run', '-d', '-ti', 'alpine/bombardier', 
                  '-c', str(connections), 
-                 '-d', duration, 
+                 '-d', f'{duration}s', 
                  '-l', url],
                 capture_output=True, text=True)
             if output_docker_stdout:
@@ -42,6 +42,7 @@ def main(filepath, connections, duration, infinitely, output_docker_stdout):
         while True:
             print(f'\n===== Starting bombarding session #{i} ==========')
             bombard()
+            time.sleep(duration)
             i = i+1
     else:
         bombard()
