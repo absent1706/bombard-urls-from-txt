@@ -10,7 +10,7 @@ import click
 @click.command()
 @click.option('--filepath',  default='urls.txt', help='txt file containing bombarded url in each line')
 @click.option('--connections',  default=1000, help='# of bombardier connections')
-@click.option('--duration', default=60, help='time to bombard each url during 1 cycle, in seconds')
+@click.option('--duration', default=3600, help='time to bombard each url during 1 cycle, in seconds')
 @click.option('--infinitely',  default=True, help='whether to bombard given URLs infinitely. If set to true, program will run "while True"')
 @click.option('--output_docker_stdout',  default=False, help='whether to print stdout that Docker returns (with bombarding statistics)')
 def main(filepath, connections, duration, infinitely, output_docker_stdout):
